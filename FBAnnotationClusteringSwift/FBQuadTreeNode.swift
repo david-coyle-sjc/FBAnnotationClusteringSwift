@@ -9,14 +9,14 @@
 import Foundation
 import MapKit
 
-class FBQuadTreeNode : NSObject {
+class FBQuadTreeNode {
     
-    var boundingBox:FBBoundingBox? = nil
+    var boundingBox:FBBoundingBox?
     
-    var northEast:FBQuadTreeNode? = nil
-    var northWest:FBQuadTreeNode? = nil
-    var southEast:FBQuadTreeNode? = nil
-    var southWest:FBQuadTreeNode? = nil
+    var northEast:FBQuadTreeNode?
+    var northWest:FBQuadTreeNode?
+    var southEast:FBQuadTreeNode?
+    var southWest:FBQuadTreeNode?
     
     var count = 0
     
@@ -24,12 +24,12 @@ class FBQuadTreeNode : NSObject {
     
     // MARK: - Initializers
     
-    override init(){
-        super.init()
+    init(){
+
     }
     
-    init(boundingBox box:FBBoundingBox){
-        super.init()
+    convenience init(boundingBox box:FBBoundingBox){
+        self.init()
         boundingBox = box
     }
     

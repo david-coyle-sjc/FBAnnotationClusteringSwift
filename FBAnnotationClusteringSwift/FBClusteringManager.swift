@@ -10,19 +10,17 @@ import Foundation
 import MapKit
 
 
-class FBClusteringManager : NSObject {
+class FBClusteringManager {
         
     var tree:FBQuadTree? = nil
     
     var lock:NSRecursiveLock = NSRecursiveLock()
     
-        
-    override init(){
-        super.init()
+    init() {
     }
-    
-    init(annotations: [MKAnnotation]){
-        super.init()
+
+    convenience init(annotations: [MKAnnotation]){
+        self.init()
         addAnnotations(annotations)
     }
     

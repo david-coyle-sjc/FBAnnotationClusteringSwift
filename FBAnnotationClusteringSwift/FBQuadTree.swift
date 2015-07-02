@@ -9,14 +9,13 @@
 import Foundation
 import MapKit
 
-class FBQuadTree : NSObject {
+class FBQuadTree {
     
     var rootNode:FBQuadTreeNode? = nil
     
     let nodeCapacity = 8
     
-    override init (){
-        super.init()
+    init (){
         
         rootNode = FBQuadTreeNode(boundingBox:MKMapRectWorld.boundingBox)
         
