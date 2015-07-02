@@ -79,7 +79,7 @@ class FBClusteringManager : NSObject {
                 let mapSize = MKMapSize(width: 1.0/scaleFactor, height: 1.0/scaleFactor)
                 
                 let mapRect = MKMapRect(origin: mapPoint, size: mapSize)
-                let mapBox:FBBoundingBox  = FBQuadTreeNode.FBBoundingBoxForMapRect(mapRect)
+                let mapBox:FBBoundingBox  = mapRect.boundingBox
                 
                 var totalLatitude:Double = 0
                 var totalLongitude:Double = 0

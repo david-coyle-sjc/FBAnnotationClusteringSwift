@@ -18,7 +18,7 @@ class FBQuadTree : NSObject {
     override init (){
         super.init()
         
-        rootNode = FBQuadTreeNode(boundingBox:FBQuadTreeNode.FBBoundingBoxForMapRect(MKMapRectWorld))
+        rootNode = FBQuadTreeNode(boundingBox:MKMapRectWorld.boundingBox)
         
     }
     
@@ -28,7 +28,7 @@ class FBQuadTree : NSObject {
     
     func insertAnnotation(annotation:MKAnnotation, toNode node:FBQuadTreeNode) -> Bool {
         
-        if !FBQuadTreeNode.FBBoundingBoxContainsCoordinate(node.boundingBox!, coordinate: annotation.coordinate) {
+        if !node.boundingBox!.containsCoordinate(annotation.coordinate) {
             return false
         }
         
@@ -68,18 +68,18 @@ class FBQuadTree : NSObject {
     }
     
     func enumerateAnnotationsUsingBlock(callback: MKAnnotation -> Void){
-        enumerateAnnotationsInBox(FBQuadTreeNode.FBBoundingBoxForMapRect(MKMapRectWorld), withNode:rootNode!, callback:callback)
+        enumerateAnnotationsInBox(MKMapRectWorld.boundingBox, withNode:rootNode!, callback:callback)
     }
     
     func enumerateAnnotationsInBox(box:FBBoundingBox, withNode node:FBQuadTreeNode, callback: MKAnnotation -> Void){
-        if (!FBQuadTreeNode.FBBoundingBoxIntersectsBoundingBox(node.boundingBox!, box2: box)) {
+        if (!node.boundingBox!.intersects(box)) {
             return;
         }
         
         let tempArray = node.annotations
         
         for annotation in tempArray {
-            if (FBQuadTreeNode.FBBoundingBoxContainsCoordinate(box, coordinate: annotation.coordinate)) {
+            if ( box.containsCoordinate(annotation.coordinate)) {
                 callback(annotation);
             }
         }
