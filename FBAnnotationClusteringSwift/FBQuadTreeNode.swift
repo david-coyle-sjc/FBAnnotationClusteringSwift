@@ -35,8 +35,9 @@ class FBQuadTreeNode {
     
     // MARK: - Instance functions
     
-    func isLeaf() -> Bool {
+    var isLeaf : Bool { get {
         return (northEast == nil) ? true : false
+        }
     }
     
     func subdivide(){

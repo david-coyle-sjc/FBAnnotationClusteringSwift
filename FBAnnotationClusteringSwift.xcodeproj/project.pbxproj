@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CFA43EB81B45FD10005C655B /* MKMapView+FBClusterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA43EB71B45FD10005C655B /* MKMapView+FBClusterExtensions.swift */; };
 		FC1B960E1ACDD017001A422D /* FBAnnotationCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1B960D1ACDD017001A422D /* FBAnnotationCluster.swift */; };
 		FC59A7E61ACD99BE009EFA30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59A7E51ACD99BE009EFA30 /* AppDelegate.swift */; };
 		FC59A7E81ACD99BE009EFA30 /* FBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59A7E71ACD99BE009EFA30 /* FBViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CFA43EB71B45FD10005C655B /* MKMapView+FBClusterExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+FBClusterExtensions.swift"; sourceTree = "<group>"; };
 		FC1B960D1ACDD017001A422D /* FBAnnotationCluster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnnotationCluster.swift; sourceTree = "<group>"; };
 		FC59A7E01ACD99BE009EFA30 /* FBAnnotationClusteringSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBAnnotationClusteringSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC59A7E41ACD99BE009EFA30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				FC59A8091ACDA181009EFA30 /* FBQuadTree.swift */,
 				FC59A80B1ACDA308009EFA30 /* FBQuadTreeNode.swift */,
 				FC59A80D1ACDA3A5009EFA30 /* FBBoundingBox.swift */,
+				CFA43EB71B45FD10005C655B /* MKMapView+FBClusterExtensions.swift */,
 			);
 			path = FBAnnotationClusteringSwift;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				FC1B960E1ACDD017001A422D /* FBAnnotationCluster.swift in Sources */,
 				FC59A7E81ACD99BE009EFA30 /* FBViewController.swift in Sources */,
 				FC59A80E1ACDA3A5009EFA30 /* FBBoundingBox.swift in Sources */,
+				CFA43EB81B45FD10005C655B /* MKMapView+FBClusterExtensions.swift in Sources */,
 				FC96203D1ACDE8A00004599C /* FBAnnotationClusterView.swift in Sources */,
 				FC59A80C1ACDA308009EFA30 /* FBQuadTreeNode.swift in Sources */,
 				FC59A7E61ACD99BE009EFA30 /* AppDelegate.swift in Sources */,

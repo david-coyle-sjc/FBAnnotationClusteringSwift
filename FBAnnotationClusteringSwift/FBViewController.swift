@@ -63,7 +63,7 @@ extension FBViewController : MKMapViewDelegate {
             
             let annotationArray = self.clusteringManager.clusteredAnnotationsWithinMapRect(self.mapView.visibleMapRect, withZoomScale:scale)
             
-            self.clusteringManager.displayAnnotations(annotationArray, onMapView:self.mapView)
+            self.mapView.displayClusterAnnotations(annotationArray)
 
         })
 

@@ -37,7 +37,7 @@ class FBQuadTree {
             return true
         }
         
-        if node.isLeaf() {
+        if node.isLeaf {
             node.subdivide()
         }
         
@@ -83,7 +83,7 @@ class FBQuadTree {
             }
         }
         
-        if node.isLeaf() {
+        if node.isLeaf {
             return
         }
         

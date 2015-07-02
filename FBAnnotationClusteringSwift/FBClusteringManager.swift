@@ -124,26 +124,6 @@ class FBClusteringManager {
         return annotations
     }
     
-    func displayAnnotations(annotations: [MKAnnotation], onMapView mapView:MKMapView){
-        
-        dispatch_async(dispatch_get_main_queue())  {
-
-            let before : NSMutableSet = NSMutableSet(array: mapView.annotations)
-            before.removeObject(mapView.userLocation)
-            let after = NSSet(array: annotations)
-            let toKeep = NSMutableSet(set: before)
-            toKeep.intersectSet(after as Set<NSObject>)
-            let toAdd = NSMutableSet(set: after)
-            toAdd.minusSet(toKeep as Set<NSObject>)
-            let toRemove = NSMutableSet(set: before)
-            toRemove.minusSet(after as Set<NSObject>)
-        
-            mapView.addAnnotations(toAdd.allObjects as! [MKAnnotation])
-            mapView.removeAnnotations(toRemove.allObjects as! [MKAnnotation])
-        }
-        
-    }
-    
     class func FBZoomScaleToZoomLevel(scale:MKZoomScale) -> Int{
         let totalTilesAtMaxZoom:Double = MKMapSizeWorld.width / 256.0
         let zoomLevelAtMaxZoom:Int = Int(log2(totalTilesAtMaxZoom))
