@@ -9,16 +9,9 @@
 import Foundation
 import MapKit
 
-protocol FBClusteringManagerDelegate {
-    
-    func cellSizeFactorForCoordinator(coordinator:FBClusteringManager) -> CGFloat
-    
-}
 
 class FBClusteringManager : NSObject {
-    
-    var delegate:FBClusteringManagerDelegate? = nil
-    
+        
     var tree:FBQuadTree? = nil
     
     var lock:NSRecursiveLock = NSRecursiveLock()
@@ -54,11 +47,7 @@ class FBClusteringManager : NSObject {
         
         
         let cellSize:CGFloat = FBClusteringManager.FBCellSizeForZoomScale(MKZoomScale(zoomScale))
-        
-//        if delegate?.respondsToSelector("cellSizeFactorForCoordinator:") {
-//            cellSize *= delegate.cellSizeFactorForCoordinator(self)
-//        }
-        
+
         let scaleFactor:Double = zoomScale / Double(cellSize)
         
         let minX:Int = Int(floor(MKMapRectGetMinX(rect) * scaleFactor))

@@ -23,7 +23,6 @@ class FBViewController: UIViewController {
         let array:[MKAnnotation] = randomLocationsWithCount(numberOfLocations)
         
         clusteringManager.addAnnotations(array)
-        clusteringManager.delegate = self;
 
         mapView.centerCoordinate = CLLocationCoordinate2DMake(0, 0);
         
@@ -47,14 +46,6 @@ class FBViewController: UIViewController {
         return array
     }
 
-}
-
-extension FBViewController : FBClusteringManagerDelegate {
- 
-    func cellSizeFactorForCoordinator(coordinator:FBClusteringManager) -> CGFloat{
-        return 1.0
-    }
-    
 }
 
 

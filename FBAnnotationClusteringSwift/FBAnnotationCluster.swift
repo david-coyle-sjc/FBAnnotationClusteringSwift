@@ -21,7 +21,5 @@ class FBAnnotationCluster : NSObject {
 }
 
 extension FBAnnotationCluster : MKAnnotation {
-    
-    
-    
+
 }

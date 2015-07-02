@@ -58,36 +58,4 @@ class FBQuadTreeNode : NSObject {
         southWest!.boundingBox = FBBoundingBox(x0: box.x0, y0:yMid,   xf:xMid,   yf:box.yf)
     }
     
-    // MARK: - Class functions
-
-//    class func FBBoundingBoxContainsCoordinate(box:FBBoundingBox, coordinate:CLLocationCoordinate2D) -> Bool {
-//        let containsX:Bool = (box.x0 <= CGFloat(coordinate.latitude)) && (CGFloat(coordinate.latitude) <= box.xf)
-//        let containsY:Bool = (box.y0 <= CGFloat(coordinate.longitude)) && (CGFloat(coordinate.longitude) <= box.yf)
-//        return (containsX && containsY)
-//    }
-//    
-//    class func FBBoundingBoxForMapRect(mapRect: MKMapRect) -> FBBoundingBox {
-//        let topLeft: CLLocationCoordinate2D = MKCoordinateForMapPoint(mapRect.origin)
-//        let botRight: CLLocationCoordinate2D = MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMaxX(mapRect), MKMapRectGetMaxY(mapRect)))
-//        
-//        let minLat: CLLocationDegrees = botRight.latitude
-//        let maxLat: CLLocationDegrees = topLeft.latitude
-//        
-//        let minLon: CLLocationDegrees = topLeft.longitude
-//        let maxLon: CLLocationDegrees = botRight.longitude
-//        
-//        return FBBoundingBox(x0: CGFloat(minLat), y0: CGFloat(minLon), xf: CGFloat(maxLat), yf: CGFloat(maxLon))
-//    }
-//    
-//    class func FBBoundingBoxIntersectsBoundingBox(box1:FBBoundingBox, box2:FBBoundingBox) -> Bool {
-//        return (box1.x0 <= box2.xf && box1.xf >= box2.x0 && box1.y0 <= box2.yf && box1.yf >= box2.y0);
-//    }
-//    
-//    class func FBMapRectForBoundingBox(boundingBox:FBBoundingBox) -> MKMapRect {
-//        let topLeft:MKMapPoint  = MKMapPointForCoordinate(CLLocationCoordinate2DMake(CLLocationDegrees(boundingBox.x0), CLLocationDegrees(boundingBox.y0)));
-//        let botRight:MKMapPoint  = MKMapPointForCoordinate(CLLocationCoordinate2DMake(CLLocationDegrees(boundingBox.xf), CLLocationDegrees(boundingBox.yf)));
-//        
-//        return MKMapRectMake(topLeft.x, botRight.y, fabs(botRight.x - topLeft.x), fabs(botRight.y - topLeft.y));
-//    }
-
 }

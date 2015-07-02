@@ -34,6 +34,7 @@ struct FBBoundingBox {
 }
 
 extension MKMapRect {
+
     var boundingBox : FBBoundingBox { get {
         let topLeft: CLLocationCoordinate2D = MKCoordinateForMapPoint(self.origin)
         let botRight: CLLocationCoordinate2D = MKCoordinateForMapPoint(MKMapPointMake(MKMapRectGetMaxX(self), MKMapRectGetMaxY(self)))

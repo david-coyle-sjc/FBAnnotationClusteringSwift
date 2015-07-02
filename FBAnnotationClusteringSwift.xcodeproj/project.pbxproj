@@ -93,6 +93,7 @@
 			children = (
 				FC59A7E51ACD99BE009EFA30 /* AppDelegate.swift */,
 				FC59A7E71ACD99BE009EFA30 /* FBViewController.swift */,
+				FC59A8071ACD9D4B009EFA30 /* FBAnnotation.swift */,
 				FC59A7E91ACD99BE009EFA30 /* Main.storyboard */,
 				FC59A7EC1ACD99BE009EFA30 /* Images.xcassets */,
 				FC59A7EE1ACD99BE009EFA30 /* LaunchScreen.xib */,
@@ -100,7 +101,6 @@
 				FC59A8051ACD9D22009EFA30 /* FBClusteringManager.swift */,
 				FC1B960D1ACDD017001A422D /* FBAnnotationCluster.swift */,
 				FC96203C1ACDE8A00004599C /* FBAnnotationClusterView.swift */,
-				FC59A8071ACD9D4B009EFA30 /* FBAnnotation.swift */,
 				FC59A8091ACDA181009EFA30 /* FBQuadTree.swift */,
 				FC59A80B1ACDA308009EFA30 /* FBQuadTreeNode.swift */,
 				FC59A80D1ACDA3A5009EFA30 /* FBBoundingBox.swift */,
