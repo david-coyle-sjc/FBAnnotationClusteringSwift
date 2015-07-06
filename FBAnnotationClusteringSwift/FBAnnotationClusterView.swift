@@ -9,46 +9,41 @@
 import Foundation
 import MapKit
 
+struct ClusterViewConfiguration {
+
+    let imageName   : String
+    let fontSize    : CGFloat?
+    let fontColor   : UIColor?
+    let borderWidth : CGFloat?
+    let borderColor : UIColor?
+
+}
+
+let clusterConfigurationDefault = ClusterViewConfiguration(imageName: "clusterSmall", fontSize: 12, fontColor: UIColor.whiteColor(),borderWidth: 3, borderColor: UIColor.whiteColor())
+
 class FBAnnotationClusterView : MKAnnotationView {
     
-    var count = 0
-    
-    var fontSize:CGFloat = 12
-    
-    var imageName = "clusterSmall"
-    
-    var borderWidth:CGFloat = 3
-    
-    var countLabel:UILabel? = nil
-    
+    weak var countLabel : UILabel? = nil
+    var configuration   : ClusterViewConfiguration = clusterConfigurationDefault
+
+    convenience init(annotation: MKAnnotation?, reuseIdentifier: String?, configuration:ClusterViewConfiguration) {
+        self.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        configure(configuration)
+    }
+
     override init(annotation: MKAnnotation?, reuseIdentifier: String?){
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        let cluster:FBAnnotationCluster = annotation as! FBAnnotationCluster
-        count = cluster.annotations.count
-        
-        // change the size of the cluster image based on number of stories
-        switch count {
-        case 0...5:
-            fontSize = 12
-            imageName = "clusterSmall"
-            borderWidth = 3
-            
-        case 6...15:
-            fontSize = 13
-            imageName = "clusterMedium"
-            borderWidth = 4
-            
-        default:
-            fontSize = 14
-            imageName = "clusterLarge"
-            borderWidth = 5
-            
-        }
-        
         backgroundColor = UIColor.clearColor()
+    }
+
+    func configure(configuration: ClusterViewConfiguration) {
+
+        // change the size of the cluster image based on number of stories
+        self.configuration = configuration
+
         setupLabel()
-        setTheCount(count)
+
     }
     
     required override init(frame: CGRect) {
@@ -61,44 +56,59 @@ class FBAnnotationClusterView : MKAnnotationView {
     }
     
     func setupLabel(){
-        countLabel = UILabel(frame: bounds)
-        
-        if let countLabel = countLabel {
-            countLabel.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            countLabel.textAlignment = .Center
-            countLabel.backgroundColor = UIColor.clearColor()
-            countLabel.textColor = UIColor.whiteColor()
-            countLabel.adjustsFontSizeToFitWidth = true
-            countLabel.minimumScaleFactor = 2
-            countLabel.numberOfLines = 1
-            countLabel.font = UIFont.boldSystemFontOfSize(fontSize)
-            countLabel.baselineAdjustment = .AlignCenters
-            addSubview(countLabel)
+
+        if let _ = countLabel {
+            countLabel!.removeFromSuperview()
+            countLabel = nil
         }
-        
-    }
-    
-    func setTheCount(localCount:Int){
-        count = localCount;
-        
-        countLabel?.text = "\(localCount)"
+
+        // label only if there's a font indicated in the config:
+        if let fontSize = configuration.fontSize,
+            fontColor = configuration.fontColor {
+
+                let theLabel = UILabel(frame: bounds)
+                theLabel.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+                theLabel.textAlignment = .Center
+                theLabel.backgroundColor = UIColor.clearColor()
+                theLabel.textColor = fontColor
+                theLabel.adjustsFontSizeToFitWidth = true
+                theLabel.minimumScaleFactor = 2
+                theLabel.numberOfLines = 1
+                theLabel.font = UIFont.boldSystemFontOfSize(fontSize)
+                theLabel.baselineAdjustment = .AlignCenters
+
+                if let theAnnotation = self.annotation as? FBAnnotationCluster {
+                    theLabel.text = theAnnotation.annotations.count.description
+                } else {
+                    theLabel.text = ""
+                }
+
+                addSubview(theLabel)
+
+                countLabel = theLabel
+
+        }
         setNeedsLayout()
     }
-    
+
     override func layoutSubviews() {
         
         // Images are faster than using drawRect:
-        let imageAsset = UIImage(named: imageName)!
+        if let imageAsset = UIImage(named: configuration.imageName) {
+            countLabel?.frame = self.bounds
+            image = imageAsset
+            centerOffset = CGPointZero
+
+            // adds a border around the  circle if asked for
+            if let borderColor = configuration.borderColor,
+                borderWidth = configuration.borderWidth {
+                    layer.borderColor = borderColor.CGColor
+                    layer.borderWidth = borderWidth
+                    layer.cornerRadius = self.bounds.size.width / 2
+            }
+        }
         
-        countLabel?.frame = self.bounds
-        image = imageAsset
-        centerOffset = CGPointZero
-        
-        // adds a white border around the green circle
-        layer.borderColor = UIColor.whiteColor().CGColor
-        layer.borderWidth = borderWidth
-        layer.cornerRadius = self.bounds.size.width / 2
-        
+
     }
     
 }

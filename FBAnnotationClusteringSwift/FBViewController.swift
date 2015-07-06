@@ -48,6 +48,9 @@ class FBViewController: UIViewController {
 
 }
 
+let clusterConfigurationSmall = clusterConfigurationDefault
+let clusterConfigurationMedium = ClusterViewConfiguration(imageName: "clusterMedium", fontSize: 13, fontColor: UIColor.whiteColor(), borderWidth: 4, borderColor: UIColor.whiteColor())
+let clusterConfigurationLarge = ClusterViewConfiguration(imageName: "clusterLarge", fontSize: 14, fontColor: UIColor.whiteColor(), borderWidth: 5, borderColor: UIColor.whiteColor())
 
 extension FBViewController : MKMapViewDelegate {
     
@@ -73,12 +76,24 @@ extension FBViewController : MKMapViewDelegate {
         
         var reuseId = ""
         
-        if annotation.isKindOfClass(FBAnnotationCluster) {
+        if let theClusterAnnotation = annotation as? FBAnnotationCluster {
             
             reuseId = "Cluster"
-            var clusterView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-            clusterView = FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId)
+            var clusterView : FBAnnotationClusterView? = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? FBAnnotationClusterView
+            if nil == clusterView {
+                clusterView = FBAnnotationClusterView(annotation: theClusterAnnotation, reuseIdentifier: reuseId)
+            } else {
+                clusterView?.annotation = annotation
+            }
 
+            let numObjects = theClusterAnnotation.annotations.count
+            if numObjects <= 5 {
+                clusterView?.configure(clusterConfigurationSmall)
+            } else if numObjects > 5 && numObjects <= 10 {
+                clusterView?.configure(clusterConfigurationMedium)
+            } else {
+                clusterView?.configure(clusterConfigurationLarge)
+            }
             return clusterView
             
         } else {
